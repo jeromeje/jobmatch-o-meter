@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import AnimatedLayout from '@/components/layout/AnimatedLayout';
 import GlassCard from '@/components/ui/GlassCard';
@@ -8,7 +7,7 @@ import { Upload, Check, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useToast } from '@/components/ui/use-toast';
 
-const Upload: React.FC = () => {
+const UploadPage: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -54,7 +53,6 @@ const Upload: React.FC = () => {
   };
 
   const handleFile = (file: File) => {
-    // Check if file is PDF or DOCX
     const fileType = file.type;
     if (fileType !== 'application/pdf' && 
         fileType !== 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
@@ -66,7 +64,6 @@ const Upload: React.FC = () => {
       return;
     }
     
-    // Check file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       toast({
         title: "File too large",
@@ -84,7 +81,6 @@ const Upload: React.FC = () => {
     
     setUploading(true);
     
-    // Simulate upload process
     setTimeout(() => {
       setUploading(false);
       setUploadComplete(true);
@@ -145,7 +141,7 @@ const Upload: React.FC = () => {
                   >
                     <div className="flex flex-col items-center">
                       <div className="w-16 h-16 rounded-full bg-apple-blue/10 flex items-center justify-center mb-4">
-                        <Upload size={24} className="text-apple-blue" />
+                        <Upload className="text-apple-blue" />
                       </div>
                       <h3 className="text-lg font-medium text-gray-900 mb-2">
                         Drag and drop your resume
@@ -259,4 +255,4 @@ const Upload: React.FC = () => {
   );
 };
 
-export default Upload;
+export default UploadPage;
